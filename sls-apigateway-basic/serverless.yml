@@ -1,0 +1,30 @@
+service: sls-apigateway-basic
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  apiGateway:
+    shouldStartNameWithService: true
+  environment:
+    debug: DEBUG
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          method: get
+          path: hello
+  moc:
+    handler: handler.moc
+    events:
+      - http:
+          method: get
+          path: moc/{name}          
+  hola:
+    handler: handler.hola
+    events:
+      - http:
+          method: post
+          path: hola             
